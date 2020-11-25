@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+{% load static %}
+
+
+{% block title %}Ma bibliothèque{% endblock title %}
+
+{% block content %}
+
+ <div class="col-md-12">
+        <h2 id='t'>Ma bibliothèque MR</h2>
+        <br>
+      <span><a href="/addnew" class="btn btn-primary">Ajouter nouveau texte</a></span>
+         <br>  <br>
+
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+
+        <div class="table-responsive">
+
+  <table class="table table-bordered table-striped ">
+    <br>
+            <thead>
+          <!--         <th><input type="checkbox" id="checkall" /></th>-->
+      <!--             <th>ID</th>-->
+                <th>Titre</th>
+              <!--  <th>Employee Email</th> -->
+                <th>Texte</th>
+              <!--     <th>Copier</th> -->
+                <th>Modifier</th>
+                <th>Supprimer</th>
+             </thead>
+   <tbody id=myTable>
+   {% for employee in employees %}
+
+    <tr>
+  <!--   <td><input type="checkbox" class="checkthis" /></td>-->
+    <!--    <td>{{ employee.id }}</td>-->
+     <td><strong> {{ employee.name }}</strong></td>
+     <!-- <td>{{ employee.email }}</td> -->
+     <td >
+
+<span style="white-space: pre-line">{{ employee.contact }}</span>
+<!--<button onclick="myFunction()">Copy text</button>-->
+
+   <button   class='btn btn-default pull-right' class="btn" data-clipboard-text="{{ employee.contact }}">
+
+
+<img src="{% static "clippy.svg" %}" alt="Copy to clipboard" title="Copier">
+
+     </td>
+<!-- <td><button class="btn" data-clipboard-text="{{ employee.contact }}"> <img src="{% static "clippy.svg" %}" alt="Copy to clipboard"></td>-->
+    <!-- <td><button onclick="myFunction()">Copy text</button></td>-->
+     <td><p data-placement="top" data-toggle="tooltip" title="Edit"><a href="/edit/{{ employee.id }}" class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></a></p></td>
+     <td><p data-placement="top" data-toggle="tooltip" title="Delete"><a href="/delete/{{ employee.id }}" class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></a></p></td>
+    </tr>
+
+   {% endfor %}
+   </tbody>
+
+  </table>
+        </div>
+    </div>
+
+{% endblock content %}
