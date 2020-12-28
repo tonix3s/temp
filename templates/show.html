@@ -41,11 +41,11 @@
 
 <span style="white-space: pre-line">{{ employee.contact }}</span>
 <!--<button onclick="myFunction()">Copy text</button>-->
-
-   <button   class='btn btn-default pull-right' class="btn" data-clipboard-text="{{ employee.contact }}">
-
-
-<img src="{% static "clippy.svg" %}" alt="Copy to clipboard" title="Copier">
+<div class="tooltip">
+   <button   class='btn btn-default pull-right' class="btn" data-clipboard-text="{{ employee.contact }} " onclick="myFunction()" onmouseout="outFunc()">
+<span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+  Copy text
+ </button></div>
 
      </td>
 <!-- <td><button class="btn" data-clipboard-text="{{ employee.contact }}"> <img src="{% static "clippy.svg" %}" alt="Copy to clipboard"></td>-->
